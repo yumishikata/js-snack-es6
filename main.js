@@ -98,8 +98,8 @@ La funzione ritornerà un nuovo array con i valori che hanno la posizione compre
 
 
 function numeriCompresi (array, a , b) {
-    var arrayCompresi = array.filter((element) => {
-        return ( array.indexOf(element) >= a &&  array.indexOf(element) <= b);
+    var arrayCompresi = array.filter((element, index) => {
+        return ( index >= a &&  index <= b);
     });
     return arrayCompresi;
 }
