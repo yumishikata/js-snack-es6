@@ -25,21 +25,18 @@ let biciclette =
     }
 ]
 console.log(biciclette);
-var pesoMin = 100000;
-var k;
-for (i=0 ; i<biciclette.length; i++){
-    var {peso} = biciclette[i];
-    if(peso <= pesoMin){
-        pesoMin = peso;
-        k= i;
+var biciLeggera = biciclette[0];
+biciclette.forEach((element) => {
+    if(element.peso<biciLeggera.peso){
+        biciLeggera = element;
     }
-}
+});
 
-var {nome} = biciclette[k];
+let {nome,peso} = biciLeggera;
 console.log(
-    `La bici più leggera è ${nome} e pesa ${pesoMin} kg`
+    `La bici più leggera è ${nome} e pesa ${peso} kg`
     
-)
+);
 
 /*Snack2) Creare un array di oggetti di squadre di calcio.
 Ogni squadra avrà diverse proprietà: nome, punti fatti, falli subiti. Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
@@ -77,24 +74,34 @@ let squadre =
 
 console.log(squadre);
 
-for(i=0; i<squadre.length; i++){
-    var object = squadre[i];
-    object.puntiFatti = random(1,10);
-    object.falliSubiti = random(1,10);
-}
+squadre.forEach((element) => {
+    element.puntiFatti = random(1,10);
+    element.falliSubiti = random(1,10);
+});
 
 var newArray = [];
-for(i=0; i<squadre.length; i++){
-    squadra = new Object();
-    var {nome,falliSubiti} = squadre[i];
-    squadra.nome = nome;
-    squadra.falliSubiti = falliSubiti;
-    newArray.push(squadra);
-}
+squadre.forEach((element) => {
+    let {nome,falliSubiti} = element;
+    newArray.push({nome,falliSubiti});
+ });
 
 console.log(newArray);
 
-
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+}
+
+
+/* Snack 3
+Scrivere una funzione che accetti tre argomenti, un array e due numeri (a più piccolo di b).
+La funzione ritornerà un nuovo array con i valori che hanno la posizione compresa tra i due numeri. */
+
+
+function numeriCompresi (array, a , b) {
+    var arrayCompresi = array.filter((element) => {
+        return ( array.indexOf(element) >= a &&  array.indexOf(element) <= b);
+    });
+    return arrayCompresi;
+}
+
+console.log(numeriCompresi(squadre, 1,3));
